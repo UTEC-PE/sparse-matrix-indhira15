@@ -5,7 +5,8 @@ using namespace std;
 
 template <class T>
 class Node {
-    int x, y;
+public:
+    const int x, y;
     T data;
     Node* next;
     Node* down;
