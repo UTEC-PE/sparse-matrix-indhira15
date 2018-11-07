@@ -17,9 +17,12 @@ int main(int argc, char *argv[]) {
     a.set(1,3,5);
     cout<<"print ------------------"<<endl;
     a.PrintByCol();
-    cout<<"print inv"<<endl;
+    cout<<"print inv---------------"<<endl;
     a.PrintByRow();
     a(3,2);
+    cout<<"multiplicacion----------"<<endl;
+    (a*2).PrintByCol();
+
 
 
     //system("PAUSE");

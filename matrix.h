@@ -129,14 +129,27 @@ class Matrix {
 
         }
 
+        Matrix<T> operator*(T scalar){
 
-        Matrix<T> operator*(T scalar);
+            Matrix nuevo(columns,rows);
+            Node<T>* aux=hColumns;
+            for(int i=0;i<columns;++i){
+                Node<T>* aux2=aux;
+                while(aux2->next!= nullptr){
+                    aux2=aux2->next;
+                    nuevo.set(i,aux2->y,(aux2->data)*scalar);
+                }
+                aux=aux->down;
+            }
+
+            return nuevo;
+        }
         Matrix<T> operator+(Matrix<T> other);
         Matrix<T> operator-(Matrix<T> other);
         Matrix<T> transposed();
         Matrix<T> operator=(Matrix<T> other);
 
-        ~Matrix();
+        //~Matrix();
 
 };
 
