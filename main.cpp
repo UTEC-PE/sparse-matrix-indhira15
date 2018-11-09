@@ -19,9 +19,14 @@ int main(int argc, char *argv[]) {
     a.PrintByCol();
     cout<<"print inv---------------"<<endl;
     a.PrintByRow();
-    a(3,2);
-    cout<<"multiplicacion----------"<<endl;
+    cout<<a(3,1);
+    cout<<endl<<"operator * T ----------"<<endl;
     (a*2).PrintByCol();
+    cout<<"operator ="<<endl;
+    Matrix<int> B =a*2;
+    (a*3).PrintByCol();
+    cout<<endl<<"operator + MAtrix-------------------"<<endl;
+    (a+B).PrintByCol();
 
 
 
