@@ -179,7 +179,36 @@ class Matrix {
             }
             else{throw "no se puede";}
         }
-        Matrix<T> operator-(Matrix<T> other);
+        Matrix<T> operator-(Matrix<T> other){
+            if((rows==other.rows)&&(columns==other.columns)){
+                Matrix<T> nuevo=(*this)*1;
+
+                Node<T>* aux11=nuevo.hColumns;
+                Node<T>* aux12=other.hColumns;
+
+                for(int i=0;i<columns;++i){
+                    Node<T>* aux1=aux11;//nuevo
+                    Node<T>* aux2=aux12;//other
+
+                    while(aux2->next!= nullptr){
+                        aux2=aux2->next;
+                        if(nuevo.find(i,aux2->y)){
+                            *(nuevo.find(i,aux2->y))=(*(nuevo.find(i,aux2->y)) - other(i,aux2->y));
+                        }
+                        else{
+                            nuevo.set(i, aux2->y,-(aux2->data));
+                        }
+                    }
+
+                    aux11=aux11->down;
+                    aux12=aux12->down;
+                }
+
+                return nuevo;
+
+            }
+            else{throw "no se puede";}
+        }
         Matrix<T> transposed();
 
         Matrix<T> operator=(Matrix<T> other){
@@ -198,7 +227,7 @@ class Matrix {
             return nuevo;
         }
 
-        ~Matrix();
+        //~Matrix();
 
 };
 

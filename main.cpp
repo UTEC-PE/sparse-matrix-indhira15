@@ -26,7 +26,8 @@ int main(int argc, char *argv[]) {
     Matrix<int> B =a*2;
     (a*3).PrintByCol();
     cout<<endl<<"operator + MAtrix-------------------"<<endl;
-    (a+B).PrintByCol();
+    B.set(0,0,55);
+    (a-B).PrintByCol();
 
 
 
