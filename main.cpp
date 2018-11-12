@@ -21,13 +21,15 @@ int main(int argc, char *argv[]) {
     a.PrintByRow();
     cout<<a(3,1);
     cout<<endl<<"operator * T ----------"<<endl;
-    (a*2).PrintByCol();
+    (a*2).PrintByRow();
     cout<<"operator ="<<endl;
     Matrix<int> B =a*2;
     (a*3).PrintByCol();
-    cout<<endl<<"operator + MAtrix-------------------"<<endl;
+    cout<<endl<<"operator + Matrix-------------------"<<endl;
     B.set(0,0,55);
     (a-B).PrintByCol();
+    (a.transposed()).PrintByCol();
+
 
 
 
