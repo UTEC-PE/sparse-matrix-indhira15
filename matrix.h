@@ -2,6 +2,7 @@
 #define MATRIX_H
 
 #include "node.h"
+#include <stack>
 
 using namespace std;
 
@@ -46,7 +47,7 @@ class Matrix {
 
                 Node<T> *nodeaux = new Node<T>{x, y, data, nullptr, nullptr};
 
-                //--------------------------COL-----------------------------------------------
+                //--------------------------ROW-----------------------------------------------
                 Node<T> *auxCR = hRows;
                 for (int i = 0; i < x; ++i) { auxCR = auxCR->down; }
                 //while (auxCol->data < nodecout<<auxCR->x;aux->x){auxCol=auxCol->down;}
@@ -60,7 +61,7 @@ class Matrix {
                 auxCR->next = nodeaux;
 
 
-                //-------------------------------ROW------------------------------------------
+                //-------------------------------COL------------------------------------------
                 auxCR = hColumns;
                 for (int i = 0; i < y; ++i) { auxCR = auxCR->next; }
                 //while ( auxRow->data < nodeaux->y) {auxRow=auxRow->next;}
@@ -122,13 +123,16 @@ class Matrix {
 
         T* find(int x, int y){
             Node<T>* auxCR = hRows;
-            while (auxCR->data < x){
+            for(int i=0;i<x;++i){
                 auxCR=auxCR->down;
             }
             bool thereis=false;
-            while((auxCR->next!= nullptr)&&(auxCR->y<y)){
+
+            while((auxCR->next!= nullptr)&&(auxCR->y<=y)){
                 auxCR=auxCR->next;
-                if(auxCR->y ==y){thereis=true;}
+                if(auxCR->y ==y){thereis=true;
+                    break;
+                }
             }
             if(thereis){ return &(auxCR->data);}
             else{
@@ -137,8 +141,34 @@ class Matrix {
         }
 
         Matrix<T> operator*(Matrix<T> other){
+            if(this->columns==other.rows){
+                Matrix nuevo(rows,other.columns);
+                Node<T>* aux1=other.hColumns;
+                Node<T>* aux2= hColumns;
+
+                for(int i=0;i<rows;++i){
+                    for(int j=0;j<other.columns;++j){
+                        T total=0;
+                        for(int k=0; k<columns;++k){
+                            if( !(find(i,k)== nullptr || other.find(k,j)== nullptr) ) {
+                                total = total + ((*this)(i, k))*(other(k, j));
+                            }
+                        }
+                        if(total!=0){
+                            nuevo.set(i,j,total);
+                        }
+                    }
+
+                }
+                return nuevo;
+            }
+            else{throw "No tiene las dimensiones adecuadas";}
 
         }
+
+        //TODO
+
+    //TODO
 
         Matrix<T> operator*(T scalar){
             Matrix nuevo(rows,columns);
@@ -182,7 +212,7 @@ class Matrix {
                 return nuevo;
 
             }
-            else{throw "no se puede";}
+            else{throw "no se puede porque son de distintos tamaños";}
         }
         Matrix<T> operator-(Matrix<T> other){
             if((rows==other.rows)&&(columns==other.columns)){
@@ -215,7 +245,7 @@ class Matrix {
             else{throw "no se puede";}
         }
         Matrix<T> transposed(){
-            Matrix<T> nuevo(rows,columns);
+            Matrix<T> nuevo(columns,rows);
             /*
             Node<T>* aux=hColumns;
             for(int i=0;i<columns;++i){
@@ -242,7 +272,6 @@ class Matrix {
             }
 
             return nuevo;
-
         }
 
         Matrix<T> operator=(Matrix<T> other){
