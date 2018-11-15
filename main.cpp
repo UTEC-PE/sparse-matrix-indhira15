@@ -69,7 +69,7 @@ int main(int argc, char *argv[]) {
     cout<<"-----d :"<<endl;
     d.PrintByRow();
     cout<<"------c*d :"<<endl;
-    (e+d).PrintByRow();
+    (e-d).PrintByRow();
     (d.transposed()).PrintByRow();
     ((d*d)).PrintByRow();
 

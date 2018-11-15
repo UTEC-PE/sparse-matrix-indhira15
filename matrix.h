@@ -2,7 +2,6 @@
 #define MATRIX_H
 
 #include "node.h"
-#include <stack>
 
 using namespace std;
 
@@ -21,6 +20,7 @@ class Matrix {
             columns=0;
             rows=0;
         }
+
         Matrix(int sizeX, int sizeY){
                 columns = sizeY;
                 rows = sizeX;
@@ -344,7 +344,9 @@ class Matrix {
         }
 
 
-        //~Matrix(){}
+        ~Matrix(){
+
+        }
 
 
 };
