@@ -10,6 +10,24 @@ public:
     T data;
     Node* next;
     Node* down;
+
+    void KillNext(){
+        if(next!= nullptr){
+            this->next->KillNext();
+        }
+        else{
+            delete(this);
+        }
+    }
+
+    void KillDown(){
+        if(down!= nullptr){
+            this->down->KillDown();
+        }
+        else{
+            delete(this);
+        }
+    }
 };
 
 #endif
