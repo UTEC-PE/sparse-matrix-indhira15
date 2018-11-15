@@ -10,6 +10,10 @@ public:
     T data;
     Node* next;
     Node* down;
+
+    void Kill(){
+        delete(this);
+    }
 };
 
 #endif

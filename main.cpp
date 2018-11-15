@@ -52,7 +52,8 @@ int main(int argc, char *argv[]) {
     e.set(2,0,5);
     e.set(2,1,1);
     e.set(2,2,1);
-    cout<<e(2,2)<<endl;
+
+    cout<<e(0,2)<<endl;
     Matrix<int> d(3,3);
     d.set(0,0,1);
     d.set(0,2,1);
@@ -61,14 +62,16 @@ int main(int argc, char *argv[]) {
     d.set(1,2,1);
     d.set(2,0,1);
     d.set(2,1,1);
-    cout<<"e: "<<endl;
+
+    e.set(2,1,3456);
+    cout<<"-----e: "<<endl;
     e.PrintByRow();
-    cout<<"d :"<<endl;
+    cout<<"-----d :"<<endl;
     d.PrintByRow();
-    cout<<"c*d :"<<endl;
-    (e*d).PrintByRow();
-
-
+    cout<<"------c*d :"<<endl;
+    (e+d).PrintByRow();
+    (d.transposed()).PrintByRow();
+    ((d*d)).PrintByRow();
 
     //system("PAUSE");
     return EXIT_SUCCESS;
