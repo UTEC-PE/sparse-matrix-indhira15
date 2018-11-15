@@ -72,7 +72,9 @@ int main(int argc, char *argv[]) {
     (e-d).PrintByRow();
     (d.transposed()).PrintByRow();
     ((d*d)).PrintByRow();
+    Matrix<int> asd = d;
+    asd.PrintByRow();
 
-    //system("PAUSE");
+    system("PAUSE");
     return EXIT_SUCCESS;
 }

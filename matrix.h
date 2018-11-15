@@ -344,9 +344,7 @@ class Matrix {
         }
 
 
-        ~Matrix(){
-
-        }
+        //~Matrix(){}
 
 
 };
